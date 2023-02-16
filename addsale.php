@@ -1,4 +1,4 @@
-<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +24,9 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div onClick="window.open('user','self')">ادارة المستخدمين</div>
    </div>
-    <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
+  <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
 <div id="req3" class=" item-bar" onClick="sub_menue1_open();">ادارة المنتجات </div>
 <div id="req4" style="display:none"; class=" item-bar" onClick="sub_menue1_close();">ادارة المنتجات</div>
@@ -38,7 +38,7 @@
 <div id="req1" class=" item-bar" onClick="sub_menue_open();">ادارة المبيعات</div>
 <div id="req2" style="display:none"; class=" item-bar" onClick="sub_menue_close();">ادارة المبيعات</div>
 <div id="sub-menue" class="sub-menue">
-<div onClick="window.open('allsale','self')">جميع المبيعات </div>
+<div onClick="window.open('allsale','self')">جميع المبيعات</div>
    <div onClick="window.open('addsale1','self')">اضافة بيع جديد </div>
    </div>
 <div id="req5" class=" item-bar" onClick="sub_menue2_open();">تقارير المبيعات</div>
@@ -53,41 +53,24 @@
 
 <div class=" item-bar">تسجيل الخروج</div>
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
+<div class="path1">جميع المنتجات</div>
+<div onClick="window.open('','self')" class="path">  <button> اضافة منتج جديد </button>
+</div>
+<div class="path12">
+<div class="p100"> التسلسل</div>
+<div class="p222"> اسم المنتج</div>
+<div class="p333">المتوفر في المخزن</div>
+<div class="p5555"> سعر الشراء</div>
+<div class="p55500"> سعر البيع</div>
+<div class="p5556"> تاريخ اضافة المنتج</div>
+<div class="p999"> التحكم<div onClick="window.open('editp','self')" class="path123">   <button> edit   </button> 
+</div> <div onClick="window.open('delete','self')" class="path1234"> <button> delete </button>
 
+</div></div>
 
-
-
-
-
-
-
-?></div></div>
-<?
-
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
-?>
-
- <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
- <select name="status">
- 
- <option>  active</option>
- <option>  silence</option>
- </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
- <p><input type="submit"  name="submit"value="تعديل"></p>
- </form></div>
- <?
- 
- ?>
+</div>
+<div class="path12345">PREVIUOS  </div>
+<div class="path123456">NEXT   </div>
 <script>
 
 function sub_menue_open(){

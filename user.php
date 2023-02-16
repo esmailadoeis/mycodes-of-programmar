@@ -1,4 +1,6 @@
-<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");?>
+<?php
+include("block1/connect3.php"); mysql_query("SET NAMES utf8");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +26,9 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div onClick="window.open('user','self')">ادارة المستخدمين</div>
    </div>
-    <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
+  <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
 <div id="req3" class=" item-bar" onClick="sub_menue1_open();">ادارة المنتجات </div>
 <div id="req4" style="display:none"; class=" item-bar" onClick="sub_menue1_close();">ادارة المنتجات</div>
@@ -45,6 +47,7 @@
 <div id="req6" style="display:none"; class=" item-bar" onClick="sub_menue2_close();">تقارير المبيعات</div>
 <div id="sub-menue2" class="sub-menue2">
 
+
 <div onClick="window.open('request2','self')">مبيعات حسب التاريخ</div>
 <div onClick="window.open('request22','self')">المبيعات الشهرية</div>
 <div onClick="window.open('request4','self')">المبيعات اليومية</div>
@@ -53,41 +56,93 @@
 
 <div class=" item-bar">تسجيل الخروج</div>
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
+<div class="path1">المستخدمين<div class="path140">المستخدمين/ادارة المستخدمين </div><div class=""><?  $q=$_GET['q'];if($q==3){
+echo"تم اضافة المستخدم بنجاح";}
+?> </div> </div>
+<div onClick="window.open('u1','self')" class="path">  <button> اضافة مستخدم جديد  </button>
+</div>
 
+<div class="form12">
+ <div class="row justify-content-center my-5  ">
+        <div class="col-6 text-center">
+            <div class="input-group mb-3">search
+                <input type="text" id="search" autocomplete="off" class="form-control form-control-lg" placeholder="بحث ">            </div>
+        </div>
+    </div>
+ </div>
+<table width="1000" border="1" cellspacing="5" cellpadding="5" class="table">
 
+<thead>
+<tr>
 
+<th  class="text" width="5%">التسلسل</th>
+<th  class="text" width="22%">اسم المستخدم</th>
+<th  class="text" width="17%">كلمة السر</th>
+<th  class="text" width="12%">حالة المستخدم</th>
+<th  class="text" width="22%">التحكم</th>
+</tr>
+<?php
+if(!isset($_GET['page'])){
+		  $page=1;
+		}
+		 else{
+		 
+		    $page= $_GET['page'];
+			}
+$result333= mysql_query("SELECT * FROM user ");
+		
+$recordcount =  mysql_num_rows($result333);
+	
+$result3330 = mysql_query("SELECT str FROM options ");
+$myrow3330 = mysql_fetch_array ($result3330);
+$num = $myrow3330["str"];
 
+		$pagecount = ceil($recordcount / $num ) ;
+		if(( $page > $pagecount ) || ($page<=0)) {
+		die('NO MORE PAGE');
+		}
+		
+		$start =($page - 1 ) * $num;
+		$end = $num ;
+$result11 = mysql_query("SELECT * FROM user limit $start , $end ");
+while($myrow11 = mysql_fetch_array ($result11)){
 
-
-
-
-?></div></div>
+?> <tr>
+<td> <span  class="bad"> <? echo $myrow11['id']; ?> </span></td>
+<td>  <span  class="bad">   <? echo $myrow11['name_user']; ?>  </span>   </td>
+<td>    <span  class="bad">  <? echo $myrow11['password']; ?>   </span>  </td>
+<td>    <span  class="bad">  <? echo $myrow11['status']; ?>   </span>  </td>
+<td>   <span  class="bad"> <a href="edit_user.php?id=<? echo $myrow11['id']; ?>"><div class="path123"><button>edit</button></div></a> </span>  
+  <a href="delete_user.php?id=<? echo $myrow11['id']; ?>"><div class="path1234"><button>delete</button></div></a> 
+ </td>
+</tr>
 <?
-
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
+}
 ?>
 
- <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
- <select name="status">
- 
- <option>  active</option>
- <option>  silence</option>
- </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
- <p><input type="submit"  name="submit"value="تعديل"></p>
- </form></div>
- <?
- 
- ?>
+</thead>
+</table>
+</div></div>
+
+</div>
+<? 
+		   $next=$page+1;
+		
+		
+		 $prev=$page-1;
+		
+		 if($next<=$pagecount)
+		 echo'<div class="path123456"><a href =user.php?id='.$id. '&page='.$next.'><h style="font-size:2vmin;">NEXT</h></a></div>';
+		 
+		     if(($next<=$pagecount)&&($prev >0))
+			 echo'<h style="font-size:3vmin;">   </h>';
+			 
+			if($prev >0)
+			
+			 echo'<div class="path12345"><a href=user.php?id='.$id.'&page='.$prev.'><h style="font-size:2vmin;">PREVIUOS</a> </div>';
+			 ?>
+
+
 <script>
 
 function sub_menue_open(){

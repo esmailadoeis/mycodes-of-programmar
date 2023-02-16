@@ -1,4 +1,8 @@
-<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");?>
+<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +28,7 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div onClick="window.open('user','self')">ادارة المستخدمين</div>
    </div>
     <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
@@ -53,8 +57,8 @@
 
 <div class=" item-bar">تسجيل الخروج</div>
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
+<div class="path1">تعديل المبيعات <div class="e"><?  $q=$_GET['q'];if($q==10){
+echo"تم تعديل المبيعات بنجاح";}
 
 
 
@@ -66,23 +70,25 @@ echo"تم تعديل المجموعة بنجاح";}
 ?></div></div>
 <?
 
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
+$result1777d = mysql_query("SELECT * FROM s  WHERE  id_sale='$id_sale' ");
+$myrow1777d = mysql_fetch_array ($result1777d);
 ?>
 
  <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
- <select name="status">
- 
- <option>  active</option>
- <option>  silence</option>
- </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
+ <form name="form1"    method="post" action="update_s5555.php">
+<p>اسم العميل </p>
+ <input type="text" name="name_custom" id="name_proguct"  value="<? echo $myrow1777d['name_custom']; ?>"> 
+<p>الكمية</p>
+ <input type="number" name="quelity" id="quelity" value="<? echo $myrow1777d['quelity']; ?>">
+ <p>تاريخ البيع</p>
+ <input type="date" name="date" id="quelity" value="<? echo $myrow1777d['date']; ?>">
+ <p>سعر البيع</p>
+ <input type="number" name="price" id="quelity" value="<? echo $myrow1777d['price']; ?>">
+  <p>المجموع</p>
+   <? $total= $myrow1777d['quelity']*$myrow1777d['price'];?>
+  
+ <input type="number" name="total" id="quelity" value="<? echo  $total; ?>">
+ <input name="id_sale" type="hidden" id="id_sale" value="<? echo $myrow1777d['id_sale']; ?>">
  <p><input type="submit"  name="submit"value="تعديل"></p>
  </form></div>
  <?

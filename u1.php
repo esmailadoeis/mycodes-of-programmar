@@ -1,4 +1,4 @@
-<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +24,9 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div onClick="window.open('user','self')">ادارة المستخدمين</div>
    </div>
-    <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
+     <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
 <div id="req3" class=" item-bar" onClick="sub_menue1_open();">ادارة المنتجات </div>
 <div id="req4" style="display:none"; class=" item-bar" onClick="sub_menue1_close();">ادارة المنتجات</div>
@@ -52,42 +52,25 @@
    </div>
 
 <div class=" item-bar">تسجيل الخروج</div>
+
+
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
-
-
-
-
-
-
-
-
-?></div></div>
-<?
-
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
-?>
-
+<div class="path1">اضافة مستخدم<div class="e"><?  $q=$_GET['q'];if($q==3){
+echo"تم اضافة المستخدم بنجاح";}
+?> </div> </div>
  <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
+ <form action="add_user.php" method="post">
+<p>اسم المستخدم</p>
+ <input type="text" name="name_user" id="name_user"placeholder="ادخل اسم المستخدم">
+<p>كلمة السر</p>
+ <input type="password" name="password" id="password" placeholder="ادخل كلمة السر">
+ <p>حالة  المستخدم</p>
  <select name="status">
- 
- <option>  active</option>
- <option>  silence</option>
+ <option>  مدير</option>
+ <option> مستخدم</option>
  </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
- <p><input type="submit"  name="submit"value="تعديل"></p>
+  <p><button>  <input type="submit"  name="submit" class="path1236"value="نشر "></button> </p>
  </form></div>
- <?
- 
- ?>
 <script>
 
 function sub_menue_open(){

@@ -4,13 +4,13 @@ $dd=$_SESSION['type'];
 echo $dd ;
 $dd55=$_SESSION['uid'];
 echo $dd55 ;
-include("../block/connect2.php"); mysql_query("SET NAMES utf8");
+include("../basam/admin/block1/connect3.php"); mysql_query("SET NAMES utf8");
 
 
 
 if(!$_SESSION['username'])
 {
-header("location: http://localhost/basam/admin/login.php");
+header("location: http://localhost/s/login66.php");
 
 }
 ?>
@@ -20,21 +20,21 @@ header("location: http://localhost/basam/admin/login.php");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>لوحة التحكم</title>
-<link href="style/as.css" rel="stylesheet" type="text/css" />
+<link href="../basam/admin/style/as.css" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
 <table width="900"  border="0" align="center"  bgcolor="#FFFFFF" class="main_berder">
   <tr>
-    <td ><img src="image/الواجهة-Recovered-Recovered33.jpg" width="900" height="165" class="style1" /></td>
+    <td ><img src="../basam/admin/image/الواجهة-Recovered-Recovered33.jpg" width="900" height="165" class="style1" /></td>
   </tr>
   <tr>
   <td>
   <table width="100%" border="0"  align="right">
   <tr>
    <td width="72%" align="right"  valign ="top" >
-  <? include("block/header.php");?>
+  <? include("../basam/admin/block/header.php");?>
        
          <?php
 		 if(isset($_POST['id'])){
@@ -56,7 +56,7 @@ if(mysql_num_rows($result546)>0)
 while ($myrow546 = mysql_fetch_array ($result546)){
 ?>
 
-<a href="<? echo $myrow546['url']; ?>"> <? echo $myrow546['$username'];?> </a>
+<a href="<? echo $myrow546['../basam/admin/url']; ?>"> <? echo $myrow546['$username'];?> </a>
 
 <?
 
@@ -72,7 +72,7 @@ echo "لاتوجد اشعارات حتى الان";
            
            
          </td>
-<?php include("block/right.php");?>
+<?php include("../basam/admin/block/right.php");?>
 
 
 
@@ -90,7 +90,7 @@ echo "لاتوجد اشعارات حتى الان";
 </td>
 </tr>
 <tr>
-<td><img src="image/images (1).jpg" width="900" height="40" /></td>
+<td><img src="../basam/admin/image/images (1).jpg" width="900" height="40" /></td>
 </tr></table>
 </body>
 </html>

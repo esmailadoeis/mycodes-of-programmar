@@ -1,4 +1,7 @@
-<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");?>
+<?php
+include("block1/connect3.php"); mysql_query("SET NAMES utf8");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +27,9 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div onClick="window.open('user','self')">ادارة المستخدمين</div>
    </div>
-    <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
+       <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
 <div id="req3" class=" item-bar" onClick="sub_menue1_open();">ادارة المنتجات </div>
 <div id="req4" style="display:none"; class=" item-bar" onClick="sub_menue1_close();">ادارة المنتجات</div>
@@ -38,7 +41,7 @@
 <div id="req1" class=" item-bar" onClick="sub_menue_open();">ادارة المبيعات</div>
 <div id="req2" style="display:none"; class=" item-bar" onClick="sub_menue_close();">ادارة المبيعات</div>
 <div id="sub-menue" class="sub-menue">
-<div onClick="window.open('allsale','self')">جميع المبيعات </div>
+<div onClick="window.open('allsale','self')">جميع المبيعات</div>
    <div onClick="window.open('addsale1','self')">اضافة بيع جديد </div>
    </div>
 <div id="req5" class=" item-bar" onClick="sub_menue2_open();">تقارير المبيعات</div>
@@ -53,41 +56,78 @@
 
 <div class=" item-bar">تسجيل الخروج</div>
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
+<div class="path1">المبيعات حسب التاريخ<div class="path1400">المبيعات حسب التاريخ/تقرير المبيعات </div> </div>
+
+<div class="form1">
+ <form method="post">
+الى تاريخ
+ <input type="date" name="date1" id="" place holder="ادخل اسم المجموعة">
+من تاريخ
+ <input type="date" name="date2" id=""placeholder="Enter Full name">
+ <button>  <input type="submit"  name="submit" class="path1236"value="بحث"></button> 
+ </form></div>
 
 
 
+<table width="1000" border="1" cellspacing="5" cellpadding="5" class="table">
 
+<thead>
+<tr>
 
+<th  class="text" width="0%">التسلسل</th>
+<th  class="text" width="30%">اسم العميل</th>
 
+<th  class="text" width="0%">الكمية</th>
+<th  class="text" width="21%">تاريخ البيع </th>
+<th  class="text" width="10%">سعر البيع</th>
+<th  class="text" width="10%">المجموع</th>
+<th  class="text" width="27%">التحكم</th>
+</tr>
 
+<?php
 
-?></div></div>
+$date_start=$_POST['date1'];
+$date_end=$_POST['date2'];
+
+$result144w = mysql_query("SELECT * FROM s  WHERE  date<='$date_end'and date >='$date_start' ");
+if (!mysql_num_rows($result144w)){?><td><span class="bad66"><?
+
+echo"No data in table";?></span> </td><?
+
+}
+else{
+while($myrow144w = mysql_fetch_array ($result144w)){
+
+?> <tr>
+<td> <span  class="bad"> <? echo $myrow144w['id_sale']; ?> </span></td>
+<td>  <span  class="bad">   <? echo $myrow144w['name_custom']; ?>  </span>   </td>
+
+<td>    <span  class="bad">  <? echo $myrow144w['quelity']; ?>   </span>  </td>
+<td>  <span  class="bad">      <? echo $myrow144w['date']; ?></span>   </td>
+<td>    <span  class="bad">  <? echo $myrow144w['price']; ?>   </span>  </td>
+ <? $total= $myrow144w['quelity']*$myrow144w['price'];?> 
+<td>    <span  class="bad">             <?  echo $total; ?>                   </span>  </td>
+
+<td>   <span  class="bad12"> <a href="edit_s.php?id_sale=<? echo $myrow144w['id_sale']; ?>"><div class="path123"><button>edit</button>
+</div></a> </span>  
+  <a href="delete_s.php?id_sale=<? echo $myrow144w['id_sale']; ?>"><div class="path1234"><button>delete</button>
+  </div></a> 
+ </td>
+</tr>
 <?
-
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
+}
+}
 ?>
 
- <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
- <select name="status">
- 
- <option>  active</option>
- <option>  silence</option>
- </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
- <p><input type="submit"  name="submit"value="تعديل"></p>
- </form></div>
- <?
- 
- ?>
+</thead>
+</table>
+
+</div></div>
+
+</div>
+
+
+		 
 <script>
 
 function sub_menue_open(){

@@ -24,7 +24,7 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div>ادارة المستخدمين</div>
    </div>
     <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
@@ -53,8 +53,8 @@
 
 <div class=" item-bar">تسجيل الخروج</div>
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
+<div class="path1">تعديل مستخدم<div class="e"><?  $q=$_GET['q'];if($q==7){
+echo"تم تعديل المستخدم بنجاح";}
 
 
 
@@ -63,26 +63,26 @@ echo"تم تعديل المجموعة بنجاح";}
 
 
 
-?></div></div>
+?></div> </div>
 <?
 
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
+$result11 = mysql_query("SELECT * FROM user  WHERE  id='$id'");
+$myrow11 = mysql_fetch_array ($result11);
 ?>
 
  <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
+ <form name="form1"    method="post" action="edit_u33.php">
+<p>اسم المستخدم</p>
+ <input type="text" name="name_user" id="name"  value="<? echo $myrow11['name_user']; ?>"> 
+<p>كلمة السر</p>
+ <input type="text" name="password" id="password" value="<? echo $myrow11['password']; ?>">
+ <p>حالة المستخدم</p>
  <select name="status">
  
- <option>  active</option>
- <option>  silence</option>
+ <option>  مدير</option>
+ <option>  مستخدم</option>
  </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
+ <input name="id" type="hidden" id="id" value="<? echo $myrow11['id']; ?>">
  <p><input type="submit"  name="submit"value="تعديل"></p>
  </form></div>
  <?

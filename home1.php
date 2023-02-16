@@ -1,4 +1,14 @@
-<? include("block1/connect3.php"); mysql_query("SET NAMES utf8");?>
+<?php
+include("block1/connect3.php"); mysql_query("SET NAMES utf8");
+session_start();
+
+if(!$_SESSION['username']){
+
+header("location: login1.php");
+
+
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,9 +34,9 @@
 <div id="req9" style="display:none"; class=" item-bar" onClick="sub_menue11_close();">المستخدمين</div>
 <div id="sub-menue11" class="sub-menue11">
 <div onClick="window.open('group','self')">ادارة المجموعات</div>
-<div onClick="window.open('user','self')">ادارة المستخدمين</div>>
+<div onClick="window.open('user','self')">ادارة المستخدمين</div>
    </div>
-    <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
+      <div onClick="window.open('cat','self')" class=" item-bar">التصنيفات</div>
 	  
 <div id="req3" class=" item-bar" onClick="sub_menue1_open();">ادارة المنتجات </div>
 <div id="req4" style="display:none"; class=" item-bar" onClick="sub_menue1_close();">ادارة المنتجات</div>
@@ -51,43 +61,67 @@
 
    </div>
 
-<div class=" item-bar">تسجيل الخروج</div>
+<a href="logout.php"><div class=" item-bar">تسجيل الخروج</div></a>
 </div></div>
-<div class="path1">تعديل مجموعة <div class="e"><?  $q=$_GET['q'];if($q==6){
-echo"تم تعديل المجموعة بنجاح";}
+ <div class="path1">dash board<div class="path140"> </div> </div>
 
+<div class="panel">
+<div class="p">عدد المنتوجات<div class="d"><? $result88 = mysql_query("SELECT  *  FROM p ");
+  
+  $num = mysql_num_rows ($result88);
 
-
-
-
-
-
-
-?></div></div>
-<?
-
-$result1 = mysql_query("SELECT * FROM g  WHERE  id='$id'");
-$myrow1 = mysql_fetch_array ($result1);
-?>
-
- <div class="form">
- <form name="form1"    method="post" action="edit_group.php">
-<p>اسم المجموعة</p>
- <input type="text" name="name" id="name"  value="<? echo $myrow1['name']; ?>"> 
-<p>مستوى المحموعة</p>
- <input type="text" name="level" id="level" value="<? echo $myrow1['level']; ?>">
- <p>حالة المجموعة</p>
- <select name="status">
- 
- <option>  active</option>
- <option>  silence</option>
- </select>
- <input name="id" type="hidden" id="id" value="<? echo $myrow1['id']; ?>">
- <p><input type="submit"  name="submit"value="تعديل"></p>
- </form></div>
- <?
- 
+ echo $num;
  ?>
+  </div></div>
+<div class="p2">عدد المستخدمين<div class="d"><? $result881 = mysql_query("SELECT  *  FROM user");
+  
+  $num1 = mysql_num_rows ($result881);
+
+ echo $num1;
+ ?> </div></div>
+<div class="p3" >عدد المبيعات<div class="d"> <? $result882 = mysql_query("SELECT  *  FROM s ");
+  
+  $num2 = mysql_num_rows ($result882);
+
+ echo $num2;
+ ?>  </div></div>
+<div class="p4">عدد التصنيفات<div class="d"><? $result883 = mysql_query("SELECT  *  FROM cats ");
+  
+  $num3= mysql_num_rows ($result883);
+
+ echo $num3;
+ ?>  </div></div>
+</div>
+<div class="column1">
+<p>الاجماليات
+</p>
+</div>
+<div class="t"> اجمالي المبيعات</div>
+<div class="t2"><? 
+$total= 0;
+$result144w = mysql_query("SELECT * FROM s ");
+while($myrow144w = mysql_fetch_array ($result144w)){
+$n1= $myrow144w['quelity']; 
+$n2= $myrow144w['price']; 
+
+
+ $total2= $n1*$n2;
+
+$total = $total +  (int)$total2;
+ 
+ }
+echo $total ;?></div>
+<div class="t1">اجمالي المنتجات</div>
+<div class="t2"><?
+$total0 = 0;
+ $result144 = mysql_query("SELECT * FROM p ");
+while($myrow144 = mysql_fetch_array ($result144)){
+$n11= $myrow144['quelity']; 
+$n22= $myrow144['price_sale']; 
+$total23= $n11*$n22;
+$total0 = $total0 +  (int)$total23;
+}
+echo $total0 ; ?></div>
 <script>
 
 function sub_menue_open(){
