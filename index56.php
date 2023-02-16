@@ -1,86 +1,45 @@
 <?php
-session_start();
-$dd=$_SESSION['type'];
-echo $dd ;
-$dd55=$_SESSION['uid'];
-echo $dd55 ;
-include("../block/connect2.php"); mysql_query("SET NAMES utf8");
+include("block/connect2.php"); mysql_query("SET NAMES utf8");
 
-
-
-if(!$_SESSION['username'])
-{
-header("location: http://localhost/basam/admin/login.php");
-
-}
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>لوحة التحكم</title>
-<link href="style/as.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الصفحة الرئيسية</title>
+<link href="style/ss.css" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
 <table width="900"  border="0" align="center"  bgcolor="#FFFFFF" class="main_berder">
   <tr>
-    <td ><img src="image/الواجهة-Recovered-Recovered33.jpg" width="900" height="165" class="style1" /></td>
+    <td ><img src="image/الواجهة-Recovered-Recovered33.jpg" width="900" height="165" class="style22" /></td>
   </tr>
   <tr>
   <td>
   <table width="100%" border="0"  align="right">
   <tr>
    <td width="72%" align="right"  valign ="top" >
-  <? include("block/header.php");?>
-       
-         <?php
-		 if(isset($_POST['id'])){
-		 
-		    $id=$_POST['id'];}
-		 
-		 $result546= mysql_query("SELECT  *  FROM notofacation WHERE user= '$id'");
-		 
-		 if(!$result546)
-{
-echo"<p>فشل الاستعلام</p>";
-
-exit(mysql_error());
-}
-if(mysql_num_rows($result546)>0)
-{
-
-
-while ($myrow546 = mysql_fetch_array ($result546)){
-?>
-
-<a href="<? echo $myrow546['url']; ?>"> <? echo $myrow546['$username'];?> </a>
-
-<?
-
-}
-}
-
-else{
-echo "لاتوجد اشعارات حتى الان";
-}
-		 
-		 ?>
-          <p> تم تسجيل الدخول بنجاح</p>
+   
+         <div align="right">
+           <?php include("block/nav.php");?>
            
+		   
+		<p align="center"<h style="font-size:4vmin;"> اهلا وسهلا بكم في موقعنا الجديد</h></p>
+		   
+          
+		  
+		  
+		  
+		  
+		  
+		   <p align="center"<h style="font-size:4vmin;"> بامكانكم ادارة الموقع من اليمين</h></p>
+		   
            
-         </td>
+         </div></td>
 <?php include("block/right.php");?>
-
-
-
-
-
-
-
-
  </tr>
  </table>
    
